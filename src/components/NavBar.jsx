@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AppleIcon from '@mui/icons-material/Apple';
+import CarWidget from './CarWidget';
 
 const pages = ['Celulares', 'Ipads', 'Computadoras'];
  
@@ -105,6 +106,7 @@ const NavBar = () => {
           >
             MACINTOSH
           </Typography>
+          <CarWidget  />
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button

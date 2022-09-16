@@ -1,9 +1,17 @@
 import React from 'react'
- 
+import { useNavigate } from 'react-router-dom';
 
 const Item = ({product}) => {
+  const navigate=useNavigate();
+
+  const handleNavigate = () =>{
+    navigate(`/detail/${product.id}`);
+  };
+
   return (
-    <div>{product.name+" "+product.description}</div>
+    <div onClick={handleNavigate}>
+      {product.name+" "+product.description}
+    </div>
   )
 }
 

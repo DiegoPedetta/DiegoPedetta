@@ -10,12 +10,15 @@ import {
   Route
 } from 'react-router-dom';
 import NotFound from './components/NotFound';
+import { ThemeProvider } from '@emotion/react';
+import theme from './temaConfig';
 
  
 
 function App() {
   return (
-     <BrowserRouter>
+    <ThemeProvider theme={theme}>
+       <BrowserRouter>
        <NavBar/>
        <Routes>
          <Route path='/' element={<ItemListContainer/>}/>
@@ -24,8 +27,7 @@ function App() {
          <Route path='*' element={<NotFound/>} />
        </Routes>
      </BrowserRouter>
-      
-     
+    </ThemeProvider>   
   );
 }
 

@@ -1,11 +1,17 @@
-import React from 'react'
+import { Grid } from '@mui/material'
+import React, { Fragment } from 'react'
 import Item from './Item'
 
 const ItemList = ({products}) => {
   return (
-    <div>{products.map(product =>{
-        return <Item key={product.id}  product={product}/>
-    })}</div>
+     
+      <Grid  container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+        {products.map((product) => (
+           <Grid item xs={2} sm={4} md={4}> <Item key={product.id}  product={product}/></Grid>  
+        ))}
+      </Grid>    
+     
+     
   )
 }
 

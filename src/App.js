@@ -12,6 +12,7 @@ import {
 import NotFound from './components/NotFound';
 import { ThemeProvider } from '@emotion/react';
 import theme from './temaConfig';
+import CartContainer from './container/CartContainer';
 
  
 
@@ -24,6 +25,7 @@ function App() {
          <Route path='/' element={<ItemListContainer/>}/>
          <Route path='/category/:categoryid' element={<ItemListContainer/>} />
          <Route path='/detail/:productid' element={<ItemDetailContainer/>} />
+         <Route path='/cart' element={<CartContainer/>} />
          <Route path='*' element={<NotFound/>} />
        </Routes>
      </BrowserRouter>

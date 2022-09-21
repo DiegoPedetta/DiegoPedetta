@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import React, { Fragment } from 'react'
+import React from 'react'
 import Item from './Item'
 
 const ItemList = ({products}) => {

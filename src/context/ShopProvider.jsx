@@ -1,8 +1,8 @@
-import { Shop } from '@material-ui/icons';
+
 import React, { createContext, useState } from 'react';
 
 
-export const shop = createContext();
+export const Shop = createContext();
 
 const ShopProvider = ({children}) => {
     const [cart,setCart] = useState([]);
@@ -15,7 +15,7 @@ const ShopProvider = ({children}) => {
                     product.id += item.quantity
                     return product
                 }
-                return product
+                return product 
             });
             setCart(cartModified)
         }else{
@@ -24,11 +24,23 @@ const ShopProvider = ({children}) => {
         }
         
     };
+
     const isInCart = (id) => {
         return cart.some(product => product.id === id)
+    };
+
+    const  removeItem = (itemToRemove) => {
+        const filteredProducts = cart.filter(item => item !== itemToRemove);
+        setCart(filteredProducts);
+    };
+
+    const clearCart = () => {
+        setCart([]);
     }
+
+
   return (
-     <Shop.Provider value={{ cart,addItem }}>
+     <Shop.Provider value={{ cart,addItem,removeItem,clearCart }}>
          {children}
      </Shop.Provider>
   )

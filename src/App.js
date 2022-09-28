@@ -13,22 +13,25 @@ import NotFound from './components/NotFound';
 import { ThemeProvider } from '@emotion/react';
 import theme from './temaConfig';
 import CartContainer from './container/CartContainer';
+import ShopProvider from './context/ShopProvider';
 
  
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-       <BrowserRouter>
-       <NavBar/>
-       <Routes>
-         <Route path='/' element={<ItemListContainer/>}/>
-         <Route path='/category/:categoryid' element={<ItemListContainer/>} />
-         <Route path='/detail/:productid' element={<ItemDetailContainer/>} />
-         <Route path='/cart' element={<CartContainer/>} />
-         <Route path='*' element={<NotFound/>} />
-       </Routes>
-     </BrowserRouter>
+       <ShopProvider>
+            <BrowserRouter>
+              <NavBar/>
+                <Routes>
+                  <Route path='/' element={<ItemListContainer/>}/>
+                  <Route path='/category/:categoryid' element={<ItemListContainer/>} />
+                  <Route path='/detail/:productid' element={<ItemDetailContainer/>} />
+                  <Route path='/cart' element={<CartContainer/>} />
+                  <Route path='*' element={<NotFound/>} />
+                </Routes>
+            </BrowserRouter>
+       </ShopProvider>
     </ThemeProvider>   
   );
 }

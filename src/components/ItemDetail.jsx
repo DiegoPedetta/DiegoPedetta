@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ItemCount from './ItemCount';
-import {shop} from '../context/ShopProvider';
+import {Shop} from '../context/ShopProvider';
 
 const ItemDetail = ({product}) => {
   const [qty,setQnt] = useState(0);
   const navigate = useNavigate();
-  const {addItem} = useContext(shop);
+  const {addItem} = useContext(Shop);
   const addCart = (quantity) =>{
     setQnt(quantity);
   };

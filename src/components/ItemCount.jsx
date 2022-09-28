@@ -25,7 +25,7 @@ const ItemCount = ({initial,stock,onAdd}) => {
   }
 
   useEffect(()=>{
-    console.log('xd');
+     
   },[count]); 
 
   return (

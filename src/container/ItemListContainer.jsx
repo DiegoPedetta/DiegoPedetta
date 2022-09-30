@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import ItemList from '../components/ItemList';
-import { products } from '../data/products';
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from '../firebase/config';
 //import ItemCount from '../components/ItemCount'
 
 export const ItemListContainer = ({greeting}) => {
@@ -14,21 +15,26 @@ export const ItemListContainer = ({greeting}) => {
 
   useEffect(()=>{
     ( async ()=>{
-      const dataProducts = new Promise ((accept,reject) => {
-        setTimeout(() => {
-          accept(products)
-        }, 2000);
-      });
+       
     
       try {
-        if(categoryid){
-          const p = await dataProducts;
-          const prod = p.filter(productos=>productos.categorias === categoryid)
-          setProducts(prod);
-        }else{
-          const prod = await dataProducts;
-          setProducts(prod);
-        }
+          const q = categoryid ?
+           query(collection(db, "products"),where("category",'==',categoryid))
+           :
+           query(collection(db,"products"))
+
+          const querySnapshot = await getDocs(q);
+          const productsFirebase =[];
+          querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            productsFirebase.push({
+              id:doc.id,
+              ...doc.data()
+            })
+          });
+          setProducts(productsFirebase);
+
       } catch (error) {
         alert("ERROR AL CARGAR LOS DATOS!");
       }

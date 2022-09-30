@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card,CardContent,CardMedia,Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
+
 const Item = ({product}) => {
   const navigate=useNavigate();
 
@@ -18,7 +19,7 @@ const Item = ({product}) => {
             <CardMedia component='img' height='245'  image={product.image} alt='imagen producto' />
             <CardContent>
               <Typography gutterBottom variant='h5' component='div'>
-                  {product.name}
+                  {product.title}
               </Typography>
               <Typography variant='body2'>
                   {product.description}

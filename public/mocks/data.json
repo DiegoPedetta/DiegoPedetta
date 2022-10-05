@@ -1,0 +1,83 @@
+[
+{
+    "id":1,
+    "name":"Iphone 11",
+    "description":"64 gb,verde, IOS 14",
+    "category":"celulares",
+    "price":900,
+    "stock":8,
+    "image":"https://www.qloud.ar/SITES/ryr/fotos/21500-0.jpg"
+},
+{
+    "id":2,
+    "name":"Iphone 12",
+    "description":"128 gb,negro, IOS 15",
+    "category":"celulares",
+    "price":1690,
+    "stock":15,
+    "image":"https://http2.mlstatic.com/D_NQ_NP_864889-MLA45729915884_042021-O.jpg"
+},
+{
+    "id":3,
+    "name":"Iphone 13",
+    "description":"256 gb,azul, IOS 15",
+    "category":"celulares",
+    "price":2100,
+    "stock":3,
+    "image":"https://www.macstation.com.ar/img/productos/2582-2.jpg"
+},
+{
+    "id":4,
+    "name":"Ipad 11 pro",
+    "description":"128 gb, 8 gd ram, gris",
+    "category":"ipads",
+    "price":1260,
+    "stock":22,
+    "image":"https://www.macstation.com.ar/img/productos/2450-1.jpg"
+},
+{
+    "id":5,
+    "name":"Ipad 12.9 pro",
+    "description":"128 gb, 8 gd ram, gris",
+    "category":"ipads",
+    "price":1080,
+    "stock":13,
+    "image":"https://www.macstation.com.ar/img/productos/2427-1.jpg"
+},
+{
+    "id":6,
+    "name":"Ipad 10.2",
+    "description":"64 gb, 8 gd ram, negro",
+    "category":"ipads",
+    "price":430,
+    "stock":22,
+    "image":"https://www.macstation.com.ar/img/productos/2569-1.jpg"
+},
+{
+    "id":7,
+    "name":"Apple Macbook Pro 2022",
+    "description":"M2 8gb Ram 256gb Ssd Gris Espacial",
+    "category":"computadoras",
+    "price":1600,
+    "stock":5,
+    "image":"https://nissei.com/media/catalog/product/cache/16a9529cefd63504739dab4fc3414065/g/r/gressssss4444.jpg"
+},
+{
+    "id":8,
+    "name":"Apple Macbook air 2020",
+    "description":"M1 8 GB RAM | 256 GB SSD Color:Salmon",
+    "category":"computadoras",
+    "price":1165,
+    "stock":16,
+    "image":"https://i.blogs.es/210ecf/macbookair1/1366_2000.jpg"
+},
+{
+    "id":9,
+    "name":"Apple Imac 24 ",
+    "description":"8 GB 256 GB color:Rosa 4480 x 2520 pixeles",
+    "category":"computadoras",
+    "price":1820,
+    "stock":2,
+    "image":"https://cdn-ipoint.waugi.com.ar/21334-large_default/imac-24-retina-45k-m1-chip-8-core-cpu-7-core-gpu-256gb-ssd-pink.jpg"
+}
+]

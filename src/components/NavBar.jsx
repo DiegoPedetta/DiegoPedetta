@@ -43,7 +43,9 @@ const NavBar = () => {
                 </Button>
             </Link> 
            </Stack>
-           <CarWidget />
+           <Link to="/cart" style={{ textDecoration : 'none',color:'white'}}>
+              <CarWidget />
+           </Link>
          </Toolbar>
        </AppBar>
         

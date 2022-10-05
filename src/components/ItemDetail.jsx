@@ -18,10 +18,13 @@ const ItemDetail = ({product}) => {
   return (
     <div>
         <h1>{product.tittle}</h1>
-        <img src={product.image} alt="ropa"/>
-        <h2>{product.price}</h2>
+        <img
+                src={product.image}
+                alt="product-detail"
+            />
+        <h2>{product.price +"$"}</h2>
         <h3>{product.description}</h3>
-        {!qty ? (<ItemCount stock={10} initial={1} onAdd={addCart}/>) : (<button onClick={handleFinish}>Finalizar compra</button>)}
+        {!qty ? (<ItemCount stock={product.stock} initial={1} onAdd={addCart}/>) : (<button onClick={handleFinish}>Finalizar compra</button>)}
     </div>
   )
 }

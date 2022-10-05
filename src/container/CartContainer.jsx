@@ -1,12 +1,15 @@
 import React, { useContext } from 'react'
+import ordenGenerada from "../services/generarOrden";
 import { DataGrid } from '@mui/x-data-grid';
 import { Shop } from '../context/ShopProvider';
 import { Button } from '@mui/material';
- 
+import { collection, addDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 const CartContainer = () => {
 
-const {cart,removeItem,clearCart} = useContext(Shop);
+const {cart,removeItem,clearCart,total} = useContext(Shop);
 
 const renderImage = (image) => {
   return (
@@ -30,7 +33,37 @@ const renderRemoveItem = (item) => {
       </Button>
     )
 }
+
+const handleBuy = async () => {
+   
+  const importeTotal = total();
+  const orden = ordenGenerada(
+      "Diego",
+      "diego@live.com",
+      11111111111,
+      cart,
+      importeTotal
+  );
+   
  
+  const docRef = await addDoc(collection(db, "orders"), orden);
+ 
+  cart.forEach(async (productoEnCarrito) => {
+       
+      const productRef = doc(db, "products", productoEnCarrito.id);
+       
+      const productSnap = await getDoc(productRef);
+       
+      await updateDoc(productRef, {
+          stock: productSnap.data().stock - productoEnCarrito.quantity,
+      });
+  });
+   
+  alert(
+      `Gracias por su compra! Se generó la orden generada con ID: ${docRef.id}`
+  );
+};
+
 
 const columns = [
   { field: 'image', headerName: 'Imagen', renderCell:renderImage , width: 140 },
@@ -67,6 +100,7 @@ cart.forEach(item => {
       <Button onClick={clearCart} color='secondary' variant='outlined'>
         Limpiar Carrito
       </Button>
+      <Button onClick={handleBuy} color='primary' variant='outlined'>Confirmar compra</Button>
     </div>
   );
 }

@@ -1,15 +1,22 @@
-import React, { useContext } from 'react'
-import ordenGenerada from "../services/generarOrden";
+import React, { useContext, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import { Shop } from '../context/ShopProvider';
-import { Button } from '@mui/material';
-import { collection, addDoc } from "firebase/firestore";
+import { Button, TextField } from '@mui/material';
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+} from "firebase/firestore";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 const CartContainer = () => {
 
 const {cart,removeItem,clearCart,total} = useContext(Shop);
+const [number, setNumber] = useState("");
+const [name, setName] = useState("");
+const [em,setEm] = useState("");
+const [correo, setCorreo] = useState("");
 
 const renderImage = (image) => {
   return (
@@ -37,13 +44,17 @@ const renderRemoveItem = (item) => {
 const handleBuy = async () => {
    
   const importeTotal = total();
-  const orden = ordenGenerada(
-      "Diego",
-      "diego@live.com",
-      11111111111,
-      cart,
-      importeTotal
-  );
+  const orden = {
+    buyer: {
+        name: name,
+        email: correo,
+        em:em,
+        numero: number,
+    },
+    items:cart,
+    total: importeTotal,
+    fecha_hora: serverTimestamp(),
+};
    
  
   const docRef = await addDoc(collection(db, "orders"), orden);
@@ -62,6 +73,7 @@ const handleBuy = async () => {
   alert(
       `Gracias por su compra! Se generó la orden generada con ID: ${docRef.id}`
   );
+  clearCart();
 };
 
 
@@ -100,7 +112,46 @@ cart.forEach(item => {
       <Button onClick={clearCart} color='secondary' variant='outlined'>
         Limpiar Carrito
       </Button>
-      <Button onClick={handleBuy} color='primary' variant='outlined'>Confirmar compra</Button>
+      <TextField
+      type="text"
+      name="name"
+      placeholder="Nombre y Apellido"
+      value={name}
+      onChange={(e) =>
+          setName(e.target.value)
+      }
+      />
+       <TextField
+          type="text"
+          placeholder="Correo electrónico"
+          value={correo} 
+          onChange={(event) => {
+              setCorreo(
+                  event.target.value
+              );
+          }}
+      />
+      <TextField
+          type="text"
+          placeholder="Confirmacion correo electrónico"
+          value={em} 
+          onChange={(event) => {
+              setEm(
+                  event.target.value
+              );
+          }}
+      />
+      <TextField
+          type="text"
+          placeholder="Correo numero"
+          value={number} 
+          onChange={(event) => {
+              setNumber(
+                  event.target.value
+              );
+          }}
+      />
+      <Button onClick={handleBuy}  color='primary' variant='outlined'>Confirmar compra</Button>
     </div>
   );
 }
